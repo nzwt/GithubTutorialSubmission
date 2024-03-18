@@ -1,20 +1,30 @@
-\documentclass{article}
+\documentclass[10pt,twocolumn]{article}
 
-% Language setting
-% Replace `english' with e.g. `spanish' to change the document language
-\usepackage[english]{babel}
+% use the oxycomps style file
+\usepackage{oxycomps}
 
-% Set page size and margins
-% Replace `letterpaper' with `a4paper' for UK/EU standard size
-\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+% usage: \fixme[comments describing issue]{text to be fixed}
+% define \fixme as not doing anything special
+\newcommand{\fixme}[2][]{#2}
+% overwrite it so it shows up as red
+\renewcommand{\fixme}[2][]{\textcolor{red}{#2}}
+% overwrite it again so related text shows as footnotes
+%\renewcommand{\fixme}[2][]{\textcolor{red}{#2\footnote{#1}}}
 
-% Useful packages
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+% read references.bib for the bibtex data
+\bibliography{references}
 
+% include metadata in the generated pdf file
+\pdfinfo{
+    /Title (Tutorial on Unity movement)
+    /Author (Nico Cantrell)
+}
+
+% set the title and author information
 \title{Git Tutorial}
 \author{Nico Cantrell}
+\affiliation{Occidental College}
+\email{ncantrell@oxy.edu}
 
 \begin{document}
 \maketitle
@@ -72,8 +82,8 @@ Let's start by installing GitHub desktop.  Go to \href{https://desktop.github.co
         \centering
         
 \begin{figure}
-            \centering
-            \includegraphics[width=1\linewidth]{MainScreen.png}
+    \centering
+        \includegraphics[width=1\linewidth]{MainScreen.png}
         \end{figure}
         
         
@@ -120,7 +130,8 @@ Let's start by installing GitHub desktop.  Go to \href{https://desktop.github.co
 
 \section{Merge Conflicts}
 
-    To show an example of a merge conflict, on the main branch select the "current branch" button on the top. At the bottom of the branches tab select "Choose a branch to merge to main. Choose the branch "Color_Is_Blue" to merge to main. Selecting this option will display a warning:
+        To show an example of a merge conflict, on the main branch select the 
+        "current branch" button on the top. At the bottom of the branches tab select "Choose a branch to merge to main. Choose the branch "Color\_Is\_Blue" to merge to main. Selecting this option will display a warning:
     \begin{figure}
         \centering
         \includegraphics[width=.5\linewidth]{MergeError.png}
@@ -135,7 +146,7 @@ Let's start by installing GitHub desktop.  Go to \href{https://desktop.github.co
         \centering
         \includegraphics[width=1\linewidth]{MergeConflictFile.png}
     \end{figure}
-    HEAD represents the branch we are currently working on (in this case main) and Color_Is_Blue represents the incoming changes we are trying to merge. To resolve the conflict delete the lines that you don't want and leave the lines that you do. In this case if we want to change the color to blue we delete lines 1,2,3 and 5. After editing the file, go back to GitHub desktop where you should see the message "All conflicted files should be resolved."
+    HEAD represents the branch we are currently working on (in this case main) and Color\_Is\_Blue represents the incoming changes we are trying to merge. To resolve the conflict delete the lines that you don't want and leave the lines that you do. In this case if we want to change the color to blue we delete lines 1,2,3 and 5. After editing the file, go back to GitHub desktop where you should see the message "All conflicted files should be resolved."
     \begin{figure}
         \centering
         \includegraphics[width=0.5\linewidth]{FilesResolved.png}
